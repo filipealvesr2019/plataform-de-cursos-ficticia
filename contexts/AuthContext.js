@@ -47,4 +47,20 @@ export function AuthProvider({ children }){
         }
     }
 
+    const logout = () => {
+        localStorage.removeItem("token");
+        setUser(null);
+    }
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) setUser({});
+    }, [])
+
+
+    return (
+        <AuthContext.Provider value={{ user, login, register, logout}}>
+            {children}
+        </AuthContext.Provider>
+    )
 }
