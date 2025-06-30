@@ -8,6 +8,14 @@ export function CartProvider({ children}) {
     const [cart, setCart] = useState([]);
 
     const addToCart = (course) => {
-        
+        setCart((prev) => [...prev, course])
     }
+
+    const removeFromCart = (id) => {
+        setCart((prev) => prev.filter((course) => course._id !== id));
+    }
+
+    const clearCart = () => setCart([]);
+    
+    const total = cart.reduce((sum, course) => sum + course.price, 0);
 }
